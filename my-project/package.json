@@ -9,8 +9,8 @@
     "seed:admin:win": "node .\\api\\seedAdmin.js",
     "seed:admin:prod": "NODE_ENV=production node seedAdmin.js",
     "dev": "nodemon api/index.js",
-    "start": "node api/index.js",
-    "build": "npm install && npm install --prefix valyrie homes && npm run build --prefix valyrie homes"
+    "start": "cd valyrie_homes && node api/index.js",
+    "build": "cd valyrie_homes && npm install && npm install --prefix valyrie_homes && npm run build --prefix valyrie homes"
   },
   "keywords": [],
   "author": "",
