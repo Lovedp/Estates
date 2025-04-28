@@ -5,13 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "seed:admin": "node \"C:/Users/HP/Desktop/Valyrie homes/my-project/api/seedAdmin.js\"",
-    "seed:admin:win": "node .\\api\\seedAdmin.js",
-    "seed:admin:prod": "NODE_ENV=production node seedAdmin.js",
-    "dev": "nodemon api/index.js",
-    "start": "cd valyrie_homes && node api/index.js",
-    "build": "cd valyrie_homes && npm install && npm install --prefix valyrie_homes && npm run build --prefix valyrie homes"
-  },
+  "dev": "nodemon api/index.js",
+  "start": "node api/index.js",
+  "seed:admin": "node api/seedAdmin.js",
+  "seed:admin:prod": "NODE_ENV=production node api/seedAdmin.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
