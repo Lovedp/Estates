@@ -7,6 +7,9 @@ import Oauth from "./Oauth";
 import { toast } from 'react-toastify';
 import { Shield } from 'lucide-react'; // Import an admin icon
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
+
 const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { loading, error } = useSelector((state) => state.user);
@@ -22,7 +25,7 @@ const SignIn = () => {
     dispatch(signInStart());
   
     try {
-      const res = await fetch('/api/auth/signin', {
+      const res = await fetch(`${API}/api/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

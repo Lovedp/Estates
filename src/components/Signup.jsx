@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Valkyrie from '../assets/Valkyrie.svg';
 import {Link, useNavigate} from 'react-router-dom'
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -31,7 +34,7 @@ const Signup = () => {
     setError(null); // Reset error before new request
 
     try {
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch(`${API}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

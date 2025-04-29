@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import Contact from './Contact';
-
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 const Listings = () => {
   SwiperCore.use([Navigation]);
   const [listing, setListing] = useState(null);
@@ -26,7 +26,7 @@ const Listings = () => {
     const fetchListing = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/listing/get/${params.listingId}`);
+        const res = await fetch(`${API}/api/listing/get/${params.listingId}`);
         const data = await res.json();
         if (data.success === false) {
           setError(true);
@@ -57,7 +57,7 @@ const Listings = () => {
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
           <div className="relative w-full h-full">
             <img
-              src={`http://localhost:3000${fullscreenImage}`}
+              src={`${API}${fullscreenImage}`}
               alt="Fullscreen view"
               className="w-full h-full object-contain"
             />

@@ -6,6 +6,7 @@ import ListingsTable from './ListingsTable';
 import MessageModal from './MessageModal';
 import ListingForm from './ListingForm';
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
   const [listings, setListings] = useState([]);
@@ -25,11 +26,11 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersRes = await fetch('/api/admin/users');
+        const usersRes = await fetch(`${API}/api/admin/users`);
         const usersData = await usersRes.json();
         setUsers(usersData.data || usersData || []);
         
-        const listingsRes = await fetch('/api/admin/listings');
+        const listingsRes = await fetch(`${API}/api/admin/listings`);
         const listingsData = await listingsRes.json();
         setListings(listingsData.data || listingsData || []);
       } catch (error) {
@@ -43,7 +44,7 @@ export default function AdminDashboard() {
 
   const handleDeleteUser = async (userId) => {
     try {
-      const response = await fetch(`/api/admin/users/${userId}`, {
+      const response = await fetch(`${API}/api/admin/users/${userId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -56,7 +57,7 @@ export default function AdminDashboard() {
 
   const handleDeleteListing = async (listingId) => {
     try {
-      const response = await fetch(`/api/admin/listings/${listingId}`, {
+      const response = await fetch(`${API}/api/admin/listings/${listingId}`, {
         method: 'DELETE',
       });
       if (response.ok) {

@@ -27,6 +27,9 @@ const Profile = () => {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showListingsError, setShowListingsError] =useState(false)
 
+
+  const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  
   useEffect(() => {
     if (currentUser) {
       setFormData({
@@ -130,7 +133,7 @@ const getImageUrl = (url) => {
       if (formData.password) formPayload.append('password', formData.password);
       if (file) formPayload.append('avatar', file);
 
-      const response = await fetch(`/api/users/update/${currentUser._id}`, {
+      const response = await fetch(`${API}/api/users/update/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -183,7 +186,7 @@ const getImageUrl = (url) => {
       dispatch(deleteUserStart());
       const token = localStorage.getItem('token');
 
-      const response = await fetch(`/api/users/delete/${currentUser._id}`, {
+      const response = await fetch(`${API}/api/users/delete/${currentUser._id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -214,7 +217,7 @@ const getImageUrl = (url) => {
     try{
       setShowListingsError(false);
       const token = localStorage.getItem('token');
-      const res = await fetch(`/api/users/listings/${currentUser._id}`, {
+      const res = await fetch(`${API}/api/users/listings/${currentUser._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -234,7 +237,7 @@ const getImageUrl = (url) => {
 
   const handleListingDelete= async(listingId)=>{
     try{
-      const res = await fetch(`/api/listing/delete/${listingId}`,{
+      const res = await fetch(`${API}/api/listing/delete/${listingId}`,{
         method: 'DELETE',
       });
      const data = await res.json();

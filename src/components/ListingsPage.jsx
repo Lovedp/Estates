@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 const ListingsPage = () => {
   const location = useLocation();
   const [listings, setListings] = useState([]);
@@ -16,7 +16,7 @@ const ListingsPage = () => {
     const fetchListings = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/api/listing/search", {
+        const response = await fetch(`${API}/api/listing/search`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ city, propertyType, priceRange }),

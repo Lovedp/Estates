@@ -16,7 +16,6 @@ const Home = () => {
       <div className='w-full overflow-hidden'>
         <Header/>
         <Search/>
-        
         <Work/>
         <Hero/>
         <Property/>

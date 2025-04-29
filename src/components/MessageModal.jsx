@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 export default function MessageModal({ isOpen, onClose, user }) {
   const [message, setMessage] = useState('');
 
   const handleSend = async () => {
     try {
-      const response = await fetch(`/api/admin/messages/${user._id}`, {
+      const response = await fetch(`${API}/api/admin/messages/${user._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { FaBed, FaBath, FaHeart } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { useState } from "react";
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 const PropertyCard = ({ 
   property, 
   isFavorite, 
@@ -28,7 +29,7 @@ const PropertyCard = ({
       <div className="relative h-64 bg-gray-100">
         {property.imageUrls?.length > 0 ? (
           <img 
-            src={`http://localhost:3000${property.imageUrls[0]}`}
+            src={`${API}${property.imageUrls[0]}`}
             alt={property.name}
             className="w-full h-full object-cover"
             onError={handleImageError}

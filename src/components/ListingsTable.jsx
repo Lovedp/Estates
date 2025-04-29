@@ -1,3 +1,4 @@
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 export default function ListingTable({ isOpen, onClose }) {
     const [formData, setFormData] = useState({
       title: '',
@@ -8,7 +9,7 @@ export default function ListingTable({ isOpen, onClose }) {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      await fetch('/api/admin/listings', {
+      await fetch(`${API}/api/admin/listings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

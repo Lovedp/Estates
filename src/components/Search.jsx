@@ -2,6 +2,8 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 const PropertySearchForm = () => {
   const [searchParams, setSearchParams] = useState({
     city: '',
@@ -26,7 +28,7 @@ const PropertySearchForm = () => {
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:3000/api/listing/get', {
+      const response = await fetch(`${API}/api/listing/get`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

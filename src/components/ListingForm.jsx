@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 const propertyCategories = [
     { id: 'family-house', label: 'Family House' },
     { id: 'apartment', label: 'Apartment' },
@@ -137,7 +137,7 @@ export default function ListingForm() {
           const uploadPromises = files.map(file => {
               const imageFormData = new FormData();
               imageFormData.append('image', file);
-              return fetch('http://localhost:3000/api/listing/upload/', {
+              return fetch(`${API}/api/listing/upload/`, {
                   method: 'POST',
                   headers: { // Add the Authorization header here
                     'Authorization': `Bearer ${token}`
@@ -182,7 +182,7 @@ export default function ListingForm() {
     
     // For development - use your backend URL
     if (process.env.NODE_ENV === 'development') {
-      return `http://localhost:3000${url}`;
+      return `${API}${url}`;
     }
     
     // For production - assumes same domain
@@ -209,7 +209,7 @@ export default function ListingForm() {
                 throw new Error('Authentication token is missing.');
             }
 
-            const response = await fetch('/api/listing/create/', {
+            const response = await fetch(`${API}/api/listing/create/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
