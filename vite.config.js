@@ -8,14 +8,24 @@ export default defineConfig({
         target: 'http://localhost:3000', // Your Express backend
         changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''), // Optional: Remove '/api' prefix
       },
     },
   },
   plugins: [react()],
   build: {
-    // Exclude backend dependencies from frontend bundle
     rollupOptions: {
-      external: ['bcryptjs', 'mongoose', 'express'], // Add other Node.js modules
+      external: [
+        // Node.js modules (backend-only)
+        'mongoose',
+        'bcryptjs',
+        'express',
+        'crypto',       // Common Node.js modules
+        'fs',           // File system (Node-only)
+        'path',         // Node.js path module
+        'http',         // Node.js HTTP module
+        'querystring',   // Node.js querystring module
+      ],
     },
   },
 });
