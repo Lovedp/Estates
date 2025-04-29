@@ -29,7 +29,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://https://inspiring-praline-2f77a7.netlify.app/',
+  origin: 'https://inspiring-praline-2f77a7.netlify.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
